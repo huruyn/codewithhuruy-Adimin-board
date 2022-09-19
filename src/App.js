@@ -1,7 +1,24 @@
 /* eslint-disable import/order */
 import './App.css';
 
-import { Area, Bar, Calendar, ColorMapping, ColorPicker, Customers, Ecommerce, Editor, Employees, Financial, Kanban, Line, Orders, Pie, Pyramid, Stacked } from './pages';
+import {
+  Area,
+  Bar,
+  Calendar,
+  ColorMapping,
+  ColorPicker,
+  Customers,
+  Ecommerce,
+  Editor,
+  Employees,
+  Financial,
+  Kanban,
+  Line,
+  Orders,
+  Pie,
+  Pyramid,
+  Stacked,
+} from './pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Footer, Navbar, Sidebar, ThemeSettings } from './components';
 import React, { useEffect } from 'react';
@@ -11,7 +28,15 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import { useStateContext } from './contexts/ContextProvider';
 
 const App = () => {
-  const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+  const {
+    setCurrentColor,
+    setCurrentMode,
+    currentMode,
+    activeMenu,
+    currentColor,
+    themeSettings,
+    setThemeSettings,
+  } = useStateContext();
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
     const currentThemeMode = localStorage.getItem('themeMode');
@@ -26,10 +51,7 @@ const App = () => {
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-            <TooltipComponent
-              content="Settings"
-              position="Top"
-            >
+            <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
                 onClick={() => setThemeSettings(true)}
@@ -38,7 +60,6 @@ const App = () => {
               >
                 <FiSettings />
               </button>
-
             </TooltipComponent>
           </div>
           {activeMenu ? (
@@ -60,13 +81,31 @@ const App = () => {
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
               <Navbar />
             </div>
+            <div className="flex justify-evenly flex-wrap ">
+              <span className="flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-4 w-20 rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
+              </span>
+              <span className="flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-4 w-20 rounded-full bg-yellow-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500" />
+              </span>
+              <span className="flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-4 w-20 rounded-full bg-green-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
+              </span>
+              <span className="flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-4 w-20 rounded-full bg-blue-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500" />
+              </span>
+            </div>
             <div>
-              {themeSettings && (<ThemeSettings />)}
+              {themeSettings && <ThemeSettings />}
 
               <Routes>
                 {/* dashboard  */}
-                <Route path="/" element={(<Ecommerce />)} />
-                <Route path="/ecommerce" element={(<Ecommerce />)} />
+                <Route path="/" element={<Ecommerce />} />
+                <Route path="/ecommerce" element={<Ecommerce />} />
 
                 {/* pages  */}
                 <Route path="/orders" element={<Orders />} />
@@ -88,7 +127,6 @@ const App = () => {
                 <Route path="/color-mapping" element={<ColorMapping />} />
                 <Route path="/pyramid" element={<Pyramid />} />
                 <Route path="/stacked" element={<Stacked />} />
-
               </Routes>
             </div>
             <Footer />
